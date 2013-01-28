@@ -8,13 +8,19 @@ package pdfhotfolder;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Rectangle;
+import com.itextpdf.text.pdf.AcroFields;
+import com.itextpdf.text.pdf.FdfReader;
 import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfImportedPage;
 import com.itextpdf.text.pdf.PdfReader;
+import com.itextpdf.text.pdf.PdfStamper;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
@@ -36,7 +42,7 @@ public class merge{public static String RESULT;
      * @throws DocumentException
      * @throws SQLException
      */
-    public static void merger(String firstPdf, String secondPdf, String dest, int firstChunkSize, int secondChunkSize)
+    public static void merger(String firstPdf, String secondPdf, String dest, String zip, String route, String deliverType, int firstChunkSize, int secondChunkSize)
         throws IOException, DocumentException {
         int totalChunkSize = firstChunkSize + secondChunkSize;
     	PdfReader reader1 = new PdfReader(firstPdf);
@@ -65,11 +71,12 @@ public class merge{public static String RESULT;
                 if( firstNumPagesNsertd == facingSlipsReq ){ break; }
                 firstPageGet++;
                 firstNumPagesNsertd++;
-                document.newPage();   
-                //currentSize = reader1.getPageSize( firstPageGet );
-                page = writer.getImportedPage(reader1, 1);
+                document.newPage();
+                PDFWrite.write(firstPdf);
+                PdfReader readOut = new PdfReader("M:\\LASER\\EDDM\\TEMP\\FS.pdf");
+                page = writer.getImportedPage(readOut, 1);
                 cb.addTemplate(page, 0, 0);
-                }
+            }
             for ( int k = 0; k < secondChunkSize; k++ ){
                 if( secondNumPagesNsertd == secondTotal ){ break; }
                 secondPageGet++;
@@ -78,9 +85,9 @@ public class merge{public static String RESULT;
                 page = writer.getImportedPage(reader2, (secondPageGet));
                 cb.addTemplate(page, 0, 0);
                 secondNumPagesNsertd++;
-                }
-            totalNsertd = firstNumPagesNsertd + secondNumPagesNsertd;
             }
+            totalNsertd = firstNumPagesNsertd + secondNumPagesNsertd;
+        }
         document.close();
     }
 }
