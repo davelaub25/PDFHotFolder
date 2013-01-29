@@ -41,10 +41,10 @@ public class PDFReader {
         int numBundles = facingSlips.intValue();
         
         //Open reader for each facing slip.
-        PdfReader reader2 = new PdfReader("M:\\LASER\\EDDM\\FacingSlips\\4.25X11_FacingSlip.pdf");
-        PdfReader reader3 = new PdfReader("M:\\LASER\\EDDM\\FacingSlips\\6.25X9_FacingSlip.pdf");
-        PdfReader reader4 = new PdfReader("M:\\LASER\\EDDM\\FacingSlips\\8.5X11_FacingSlip.pdf");
-        PdfReader reader5 = new PdfReader("M:\\LASER\\EDDM\\FacingSlips\\12X15_FacingSlip.pdf");
+        PdfReader reader2 = new PdfReader("C:\\LASER\\EDDM\\FacingSlips\\4.25X11_FacingSlip.pdf");
+        PdfReader reader3 = new PdfReader("C:\\LASER\\EDDM\\FacingSlips\\6.25X9_FacingSlip.pdf");
+        PdfReader reader4 = new PdfReader("C:\\LASER\\EDDM\\FacingSlips\\8.5X11_FacingSlip.pdf");
+        PdfReader reader5 = new PdfReader("C:\\LASER\\EDDM\\FacingSlips\\12X15_FacingSlip.pdf");
                 
         //Get page size for each facing slip
         Rectangle pageSize1 = reader2.getPageSize(1);
@@ -61,28 +61,28 @@ public class PDFReader {
         
         if(pageSize.toString().equals(pageSize1.toString())){
             formSize = "1";
-            firstPdf = "M:\\LASER\\EDDM\\FacingSlips\\4.25X11_FacingSlip.pdf";
+            firstPdf = "C:\\LASER\\EDDM\\FacingSlips\\4.25X11_FacingSlip.pdf";
             dest = "C:\\TEST2\\4.25x11\\" + fileNameOnly;
         }
         else if(pageSize.toString().equals(pageSize2.toString())){
             formSize = "2";
-            firstPdf = "M:\\LASER\\EDDM\\FacingSlips\\6.25X9_FacingSlip.pdf";
+            firstPdf = "C:\\LASER\\EDDM\\FacingSlips\\6.25X9_FacingSlip.pdf";
             dest = "C:\\TEST2\\6.25x9\\" + fileNameOnly;
         }
         else if(pageSize.toString().equals(pageSize3.toString())){
             formSize = "3";
-            firstPdf = "M:\\LASER\\EDDM\\FacingSlips\\8.5X11_FacingSlip.pdf";
+            firstPdf = "C:\\LASER\\EDDM\\FacingSlips\\8.5X11_FacingSlip.pdf";
             dest = "C:\\TEST2\\8.5x11\\" + fileNameOnly;
         }
         else if(pageSize.toString().equals(pageSize4.toString())){
             formSize = "4";
-            firstPdf = "M:\\LASER\\EDDM\\FacingSlips\\12X15_FacingSlip.pdf";
+            firstPdf = "C:\\LASER\\EDDM\\FacingSlips\\12X15_FacingSlip.pdf";
             dest = "C:\\TEST2\\12x15\\" + fileNameOnly;            
         }
         
         int firstChunkSize = 1;
         int secondChunkSize = 50;
-        merge.merger(firstPdf, secondPdf, dest, firstChunkSize, secondChunkSize);
+        merge.merger(firstPdf, secondPdf, dest, zip, route, deliverType, firstChunkSize, secondChunkSize);
         
         System.out.println(pdfInfo);
         
