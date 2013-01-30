@@ -16,7 +16,7 @@ public class PdfHotFolder {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws IOException, DocumentException {
+    public static void main(String[] args) throws IOException, DocumentException, Exception {
         String[] dir;
         dir = new String[1];
         dir[0]= "C:\\test";

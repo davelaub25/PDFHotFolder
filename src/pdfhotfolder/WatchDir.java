@@ -32,11 +32,11 @@ package pdfhotfolder;
  */
 
 import com.itextpdf.text.DocumentException;
-import java.nio.file.*;
-import static java.nio.file.StandardWatchEventKinds.*;
-import static java.nio.file.LinkOption.*;
-import java.nio.file.attribute.*;
 import java.io.*;
+import java.nio.file.*;
+import static java.nio.file.LinkOption.*;
+import static java.nio.file.StandardWatchEventKinds.*;
+import java.nio.file.attribute.*;
 import java.util.*;
 
 /**
@@ -113,7 +113,7 @@ public class WatchDir {
     /**
      * Process all events for keys queued to the watcher
      */
-    void processEvents() throws DocumentException, IOException {
+    void processEvents() throws DocumentException, IOException, Exception {
         for (;;) {
 
             // wait for key to be signalled
@@ -181,7 +181,7 @@ public class WatchDir {
         System.exit(-1);
     }
 
-    public static void main(String[] args) throws IOException, DocumentException {
+    public static void main(String[] args) throws IOException, DocumentException, Exception {
         // parse arguments
         if (args.length == 0 || args.length > 2)
             usage();

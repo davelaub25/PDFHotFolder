@@ -17,7 +17,7 @@ import java.io.File;
 public class PDFReader {
 
     public static void main(String args)
-    	throws DocumentException, IOException {
+    	throws DocumentException, IOException, Exception {
     	new PDFReader().readPDF(args);
     }
 
@@ -27,7 +27,7 @@ public class PDFReader {
      * @throws    IOException 
      */
     public static String readPDF(String filename)
-	throws DocumentException, IOException {
+	throws DocumentException, IOException, Exception {
         
         String firstPdf = null;
         
@@ -82,7 +82,14 @@ public class PDFReader {
         
         int firstChunkSize = 1;
         int secondChunkSize = 50;
-        merge.merger(firstPdf, secondPdf, dest, firstChunkSize, secondChunkSize);
+        String zip = "1";
+        String[] zips = {"1"};
+        String route = "1";
+        String deliverType = "1";
+                    
+        //merge.merger(firstPdf, secondPdf, dest, zip, route, deliverType, firstChunkSize, secondChunkSize);
+        
+        Schedule.main(zips);
         
         System.out.println(pdfInfo);
         
